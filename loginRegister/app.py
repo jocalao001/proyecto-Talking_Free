@@ -25,10 +25,10 @@ def registro():
     if request.method == 'POST':
         nombre = request.form['nombre']
         email = request.form['email']
-        password = generate_password_hash(request.form['password'], method='sha256')
+        password_input = generate_password_hash(request.form['password'], method='pbkdf2:sha256')
 
         # Insertar datos en la base de datos
-        cursor.execute("INSERT INTO usuarios (nombre, email, password) VALUES (%s, %s, %s)", (nombre, email, password))
+        cursor.execute("INSERT INTO usuarios (nombre, email, password) VALUES (%s, %s, %s)", (nombre, email, password_input))
         db.commit()
 
         # Redirigir a la página de inicio de sesión

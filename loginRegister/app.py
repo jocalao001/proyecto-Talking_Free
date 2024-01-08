@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
 
 app = Flask(__name__)
@@ -24,7 +25,7 @@ def registro():
     if request.method == 'POST':
         nombre = request.form['nombre']
         email = request.form['email']
-        password = request.form['password']
+        password = generate_password_hash(request.form['password'], method='sha256')
 
         # Insertar datos en la base de datos
         cursor.execute("INSERT INTO usuarios (nombre, email, password) VALUES (%s, %s, %s)", (nombre, email, password))
@@ -45,8 +46,9 @@ def login():
         # Verificar las credenciales en la base de datos
         cursor.execute("SELECT * FROM usuarios WHERE email = %s AND password = %s", (email, password))
         user = cursor.fetchone()
+        
 
-        if user:
+        if user and check_password_hash(user[2], password):
             # Iniciar sesión y redirigir a la página principal
             session['user'] = user
             session['logged_in'] = True

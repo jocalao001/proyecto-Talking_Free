@@ -1,0 +1,90 @@
+body{
+	font-family: 'Comic Sans MS', sans-serif;
+	margin: 0;
+	background: url(fondo.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+.contenedor{
+	width: 100%;
+	padding: 15px;
+}
+
+.formulario{
+	background: transparent;
+	backdrop-filter: blur(55px);
+	margin-top: 158px;
+	padding: 3px;
+}
+
+h1{
+	text-align: center;
+	color: #1a2537;
+	font-size: 40px;
+}
+
+input[type="text"],
+input[type="password"]{
+	font-size: 1rem; /* Ajustado tamaño de fuente para mantener proporciones */
+	width: 100%; /* Cambiado el ancho al 100% */
+	padding: 15px; /* Ajustado el relleno para mantener proporciones */
+	border: none;
+	outline: none; /* Añadido outline para quitar el borde de enfoque */
+	background: transparent; /* Cambiado a transparente para mantener el estilo */
+	color: #fff; 
+}
+
+.input-contenedor{
+	margin-bottom: 30px; /* Ajustado el margen inferior para mantener proporciones */
+	border: 2px solid rgba(255, 255, 255, 0.5); /* Mantenido el estilo del borde */
+	border-radius: 20px; /* Mantenido el estilo del borde */
+	backdrop-filter: blur(55px); /* Mantenido el efecto de desenfoque */
+}
+
+.icon{
+	min-width: 100px;
+	text-align: center;
+	color: #999;
+}
+
+.button{
+	border: none;
+	width: 100%;
+	color: white;
+	font-size: 20px;
+	background: #1a2537;
+	padding: 15px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.button:hover{
+ background: cadetblue;
+}
+
+p{
+ text-align: center;
+}
+
+.link{
+	text-decoration: none;
+	color: #1a2537;
+	font-weight: 600;
+}
+
+.link:hover{
+	color: cadetblue;
+}
+@media(min-width:768px){
+	.formulario{
+		margin: auto;
+		width: 500px;
+		margin-top: 50px;
+		border-radius: 2%;
+	}
+}

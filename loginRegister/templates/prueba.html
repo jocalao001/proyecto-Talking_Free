@@ -3,10 +3,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bienvenido</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slide.css') }}">
+    <script src="{{ url_for('static', filename='slide.js') }}"></script>
+    <title>Talking Free</title>
 </head>
 <body>
     <h1>Bienvenido</h1>
+    <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">Slide 1</div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+        
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
     
     <!-- Botón de cerrar sesion -->
     <form method="GET" action="/logout">

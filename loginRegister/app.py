@@ -37,25 +37,36 @@ def registro():
     return render_template('registro.html')
 
 # Ruta de inicio de sesión
+# Ruta de inicio de sesión
 @app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
-        password = request.form['password']
+        password_input = request.form['password']
 
-        # Verificar las credenciales en la base de datos
-        cursor.execute("SELECT * FROM usuarios WHERE email = %s AND password = %s", (email, password))
+        # Obtener la contraseña almacenada en la base de datos
+        cursor.execute("SELECT * FROM usuarios WHERE email = %s", (email,))
         user = cursor.fetchone()
-        
 
-        if user and check_password_hash(user[2], password):
-            # Iniciar sesión y redirigir a la página principal
-            session['user'] = user
-            session['logged_in'] = True
-            return redirect(url_for('prueba'))
+        if user:
+            # Imprime información útil para la depuración
+            print(f"Email ingresado: {email}")
+            print(f"Usuario encontrado en la base de datos: {user}")
+
+            # Verificar la contraseña
+            if check_password_hash(user[3], password_input):
+                # Iniciar sesión y redirigir a la página principal
+                session['user'] = user
+                session['logged_in'] = True
+                return redirect(url_for('prueba'))
+            else:
+                print("La verificación de contraseña falló.")
+        else:
+            print(f"No se encontró ningún usuario con el correo electrónico: {email}")
 
     # Redirigir de nuevo a la página de inicio de sesión en caso de credenciales incorrectas
     return redirect(url_for('index'))
+
 
 # Ruta de cierre de sesión
 @app.route('/logout')

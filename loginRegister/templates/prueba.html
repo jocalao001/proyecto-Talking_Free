@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,13 +8,96 @@
     <link rel="stylesheet" href="static/slide.css">
     <title>Talking Free</title>
 </head>
+
 <body>
-    <h1>Bienvenido</h1>
-    <form method="GET" action="/logout">
-        <button type="submit">Cerrar Sesión</button>
-    </form>
-    
-    <script src="static/slide.js"></script>
-     
+    <header><br>
+        <h1>Talking Free</h1>
+        <form method="GET" action="/logout">
+            <button type="submit">Cerrar Sesión</button>
+        </form>
+    </header></br>
+    <!--          Label            -->
+    <div id="contenedor">
+        <div class="input">
+            <input id="pestana1" type="radio" name="pestana" class="label" checked="checked" />
+            <label for="pestana1">Pagina de Inicio</label>
+            <input id="pestana2" type="radio" name="pestana" class="label" />
+            <label for="pestana2">Registro</label>
+            <input id="pestana3" type="radio" name="pestana" class="label" />
+            <label for="pestana3">Galeria</label>
+            <!--         / Label         -->
+            <!--     contenido               -->
+            <div id="contenido">
+                <!--      contenido Pstana 1     -->
+                <div id="cont1">
+                    <h2> ¿Quienes Somos?</h2>
+                    <p>
+                        Somos una organizacion con el unico proposito es garantizar la diversion para todas las edades
+                        en un campamento de verano con divertidas actividades que estimulan la autonomía, la
+                        responsabilidad y la coordinación de los campistas.
+                    </p>
+                    <h3> Actividades</h3>
+                    <table>
+                        <td>
+                            <ul>
+                                <li>Rapel</li>
+                                <li>Escalar</li>
+                                <li>Bicicleta de montaña</li>
+                                <li>Tiro con arco</li>
+                                <li>Kayaks</li>
+                                <li>Canoas</li>
+                                <li>Tirolesa</li>
+                                <li>Diferentes retos de
+                                    Altura</li>
+                                <li>Equitacion</li>
+                                <li>Entre muchas otras cosas que les permiten hacer nuevos amigos y vivir un verano
+                                    extraordinario.</li>
+                            </ul>
+                        </td>
+                        
+                    </table>
+                    </br>
+                    </p>
+
+                    <p>
+                        Damos lo mejor en diversión, todas las actividades que realizamos son emocionantes, recreativas,
+                        sanas y seguras.
+
+                    </p>
+                </div>
+                <!-- //contenido pstana 1  -->
+
+                <!--    contenido pestana 2   -->
+                <div id="cont2">
+                    
+                    <h2>Requisitos Del Registro</h2>
+                    <p>Antes de llenar el formulario de registro para la asistencia del campamento es necesario tener en
+                        cuenta los siguiguientes puntos:</p>
+                </div>
+                <!--    //contenido pestana 2  -->
+
+                <!--     contenido pestana 3     -->
+                <div id="cont3">
+                    <h2>Galeria de Fotografias</h2>
+                    <p>
+                        La presente galeria es una recopilacion de fotografias tomadas en el ultimo campamento que
+                        realizamos en el verano del pasado año(2016).
+                    </p>
+                    
+                </div>
+                <!--  // contenido pestana 3   -->
+            </div>
+            <!--     // contenido     -->
+        </div>
 </body>
+
+</html>
+
+
+
+
+<script src="static/slide.js"></script>
+
+</body>
+
 </html>

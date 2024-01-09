@@ -1,0 +1,109 @@
+body{
+    background: 	#414141;
+  font-size: large;
+}
+
+* {
+ font-family: Arial, sans;
+ margin: 0;
+ padding: 0;
+}
+
+header{
+  background: #242424;
+   height: 5.5em;
+   width: 100%;
+/* opacity: .7; */
+
+}
+
+#contenedor {
+ margin: 0 auto;
+ width: 95%; /* Ancho del contenedor */
+}
+#contenedor input{
+ height: 2.5em;
+}
+
+#contenedor label {
+ background: #ffffff; /* Fondo de las pestañas */
+ border-radius: .25em .25em 0 0;
+ color: #616161; /* Color del texto de las pestañas */
+ cursor: pointer;
+ display: block;
+ float: right;
+ font-size: 1em; /* Tamaño del texto de las pestañas */
+ height: 2.5em;
+ line-height: 2.5em;
+ margin-right: .25em;
+ padding: 0 1.5em;
+ text-align: center;
+}
+
+#contenedor input:hover + label {
+ background: 	#000000; /* Fondo de las pestañas al pasar el cursor por encima */
+ color: rgb(255, 255, 255); /* Color del texto de las pestañas al pasar el cursor por encima */
+}
+#contenedor input:checked + label {
+ background:#242424; /* Fondo de las pestañas al presionar */
+ color: rgb(255, 255, 255); /* Color de las pestañas al presionar */
+
+}
+#contenido {
+ background: #242424; /* Fondo del contenido */
+ border-radius: 0 .25em .25em .25em;
+ min-height: 35em; /* Alto del contenido */
+ position: relative;
+ width: 100%;
+ margin-bottom: 2em;
+ 
+}
+#contenido div  {
+  
+  opacity: 0;
+ padding: 1.5em;
+ position: absolute;
+}
+
+#contenedor input#pestana1:checked ~ #contenido #cont1,
+#contenedor input#pestana2:checked ~ #contenido #cont2,
+#contenedor input#pestana3:checked ~ #contenido #cont3{
+ opacity: 1;
+}
+
+table{
+   height: 1.5em;
+   width: 60%; 
+/*   background:red; */
+ margin-left:20%;
+}
+
+.form{
+   width: 250px;
+}
+.form:last-child{
+  height: 8.5em;
+}
+
+
+footer{
+    background:  	#CD853F;
+   height: 5.5em;
+   width: 100%;
+/* opacity: 0.7; */
+}
+
+h1,h2,h3{
+/*  margin: 1em 0; */
+ text-align: center;
+}
+
+.label{
+   visibility: hidden;
+}
+
+.boton{
+ margin-left:27%;
+  width: 100px;
+
+}

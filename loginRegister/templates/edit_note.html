@@ -1,0 +1,18 @@
+<!-- edit_note.html -->
+{% extends 'note_template.html' %}
+
+{% block title %}Editar Nota{% endblock %}
+
+{% block content %}
+    <h1>Editar Nota</h1>
+    <form action="{{ url_for('update_note', id=note.id) }}" method="post">
+        <label for="new_content"></label>
+        <textarea type="text" name="new_content" cols="72" rows="3" required>{{ note.content }}</textarea>
+        <div>
+            <a href="{{ url_for('index') }}" class="cancel-link" font-size="medium" >Cancelar</a>
+            <button>Guardar</button>
+            
+        </div>
+        
+    </form>
+{% endblock %}

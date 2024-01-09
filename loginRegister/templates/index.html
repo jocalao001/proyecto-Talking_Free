@@ -1,0 +1,64 @@
+<!-- index.html -->
+{% extends 'note_template.html' %}
+
+{% block title %}Notas{% endblock %}
+
+{% block content %}
+    <h1>Mis Notas</h1>
+    <form action="{{ url_for('create_note') }}" method="post">
+        <button type="submit" onclick="mostrarInput()">Agregar Nota</button>
+        <label for="note_content" id="label_note" style="display: none;"></label>        
+        <textarea type="text" name="note_content" id="note_content" style="display: none;" cols="72" rows="3" oninput="autoResize()" required></textarea>
+        <button type="button" id="cancelButton" onclick="cancelarInput()" style="display: none;">Cancelar</button>
+    </form>
+    <script>
+        function mostrarInput() {
+            var label = document.getElementById('label_note');
+            var input = document.getElementById('note_content');
+
+            label.style.display = 'block';
+            input.style.display = 'block';
+            cancelButton.style.display = 'inline-block';
+        }
+
+        function cancelarInput() {
+            var label = document.getElementById('label_note');
+            var input = document.getElementById('note_content');
+            input.value = '';
+            label.style.display = 'none';
+            input.style.display = 'none';
+            cancelButton.style.display = 'none';
+        }
+
+        function autoResize() {
+            var textarea = document.getElementById("note_content");
+            textarea.style.height = "auto";
+            textarea.style.height = (textarea.scrollHeight) + "px";
+        }
+
+        function copiarContenido(button) {
+            var nota = button.parentNode.parentNode; // Acceder al contenedor de la nota
+            var contenido = nota.querySelector('p').innerText.trim();
+
+            // Copiar al portapapeles
+            var textarea = document.createElement('textarea');
+            textarea.value = contenido;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+    </script>
+
+    {% for note in notes %}
+        <div class="note">
+            <p>{{ note.content }}</p>
+            <div>            
+                <a type="button" href="{{ url_for('edit_note', id=note.id) }}">Editar</a>
+                <a href="{{ url_for('delete_note', id=note.id) }}">Eliminar</a>
+                <button type="button" onclick="copiarContenido(this)">Copiar nota</button>
+                <p>{{ note.formatted_date }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

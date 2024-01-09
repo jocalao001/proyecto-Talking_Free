@@ -1,0 +1,25 @@
+<!-- note_template.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Notas con Flask y MySQL{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    
+</head>
+
+<body>
+    <header>
+        <h1><a href="/bienvenido"></a>Talking Free</h1>
+        <form method="GET" action="/bienvenido">
+            <button type="submit">Back</button>
+        </form>
+    </header>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+</html>

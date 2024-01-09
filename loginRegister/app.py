@@ -6,13 +6,21 @@ app = Flask(__name__)
 app.secret_key = '123123123'  # Cambia esto a una clave secreta fuerte
 
 # Configuración de la base de datos
-db = mysql.connector.connect(
+db_usuarios = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
     database="usuarios"
 )
-cursor = db.cursor()
+cursor_usuarios = db_usuarios.cursor()
+
+db_notas = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="notas"
+)
+cursor_notas = db_notas.cursor(dictionary=True)
 
 # Ruta de inicio
 @app.route('/')
@@ -28,8 +36,8 @@ def registro():
         password_input = generate_password_hash(request.form['password'], method='pbkdf2:sha256')
 
         # Insertar datos en la base de datos
-        cursor.execute("INSERT INTO usuarios (nombre, email, password) VALUES (%s, %s, %s)", (nombre, email, password_input))
-        db.commit()
+        cursor_usuarios.execute("INSERT INTO usuarios (nombre, email, password) VALUES (%s, %s, %s)", (nombre, email, password_input))
+        db_usuarios.commit()
 
         # Redirigir a la página de inicio de sesión
         return redirect(url_for('index'))
@@ -45,8 +53,8 @@ def login():
         password_input = request.form['password']
 
         # Obtener la contraseña almacenada en la base de datos
-        cursor.execute("SELECT * FROM usuarios WHERE email = %s", (email,))
-        user = cursor.fetchone()
+        cursor_usuarios.execute("SELECT * FROM usuarios WHERE email = %s", (email,))
+        user = cursor_usuarios.fetchone()
 
         if user:
             # Imprime información útil para la depuración
@@ -67,7 +75,6 @@ def login():
     # Redirigir de nuevo a la página de inicio de sesión en caso de credenciales incorrectas
     return redirect(url_for('index'))
 
-
 # Ruta de cierre de sesión
 @app.route('/logout')
 def logout():
@@ -75,13 +82,55 @@ def logout():
     session['logged_in'] = False
     return redirect(url_for('index'))
 
-# Ruta de bienvenida
+# Ruta despues de aprovado el inicio de sesion
 @app.route('/bienvenido', methods=['GET'])
 def prueba():
     if 'logged_in' in session and session['logged_in']:
         return render_template('prueba.html')
     else:
         return redirect(url_for('login'))
+
+
+# Ruta para mostrar las notas
+@app.route('/notas')
+def index2():
+    cursor_notas.execute("SELECT id, content, created_at FROM notas ORDER BY created_at DESC")
+    notes = cursor_notas.fetchall()
+     # Formatear la fecha en cada nota antes de pasarla al template
+    for note in notes:
+        note['formatted_date'] = note['created_at'].strftime('%d-%m-%Y')
+
+    return render_template('index.html', notes=notes)
+
+# Ruta para agregar una nueva nota
+@app.route('/create_note', methods=['POST'])
+def create_note():
+    content = request.form['note_content']
+    cursor_notas.execute("INSERT INTO notas (content) VALUES (%s)", (content,))
+    db_notas.commit()
+    return redirect(url_for('index2'))
+
+# Ruta para editar una nota
+@app.route('/edit_note/<int:id>')
+def edit_note(id):
+    cursor_notas.execute("SELECT * FROM notas WHERE id = %s", (id,))
+    note = cursor_notas.fetchone()
+    return render_template('edit_note.html', note=note)
+
+# Ruta para actualizar una nota editada
+@app.route('/update_note/<int:id>', methods=['POST'])
+def update_note(id):
+    new_content = request.form['new_content']
+    cursor_notas.execute("UPDATE notas SET content = %s WHERE id = %s", (new_content, id))
+    db_notas.commit()
+    return redirect(url_for('index2'))
+
+# Ruta para eliminar una nota
+@app.route('/delete_note/<int:id>')
+def delete_note(id):
+    cursor_notas.execute("DELETE FROM notas WHERE id = %s", (id,))
+    db_notas.commit()
+    return redirect(url_for('index2'))
 
 if __name__ == '__main__':
     app.run(debug=True, port="4002")

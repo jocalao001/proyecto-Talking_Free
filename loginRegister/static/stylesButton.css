@@ -1,0 +1,67 @@
+
+.button {
+    display: flex;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Arial Black', sans-serif;
+    /* user-select: none; */
+}
+
+#record-button:hover {
+    background-color: rgb(29, 162, 29);
+    /* Cambia el color al pasar el ratón sobre el botón */
+}
+
+#record-button:active {
+    background-color: red;
+    /* Cambia el color cuando se presiona el botón */
+}
+
+#record-pulse {
+    transform-origin: 50% 50%;
+    fill:grey;
+    opacity:0.2;
+    animation: pulse 3s cubic-bezier(.39,.01,.17,1) infinite;
+  }
+  
+  #record-button {
+    fill:rgb(0, 169, 0);
+    transform-origin: 30% 30%;
+    transition: all 0.5s cubic-bezier(.39,.01,.17,1);
+  }
+  
+  #record-button:hover {
+    transform:scale(1.08);
+    transform-origin: 50% 50%;
+    transition: all 0.5s cubic-bezier(.39,.01,.17,1);
+    -webkit-filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px 0px 3px); 
+    filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px 0px 3px)
+  }
+
+  #record-button.hover {
+    background-color: rgb(29, 162, 29);
+  }
+
+  #record-button:active {
+    fill: red;
+    transform:scale(0.93);
+    transform-origin: 50% 50%;
+    transition: all 0.1s;
+    -webkit-filter: drop-shadow(rgba(0, 0, 0, 0.8) 0px 0px 5px); 
+    filter: drop-shadow(rgba(0, 0, 0, 0.8) 0px 0px 5px)
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform:scale(1);
+    }
+    50% {
+      transform:scale(0.85);
+    }
+    100% {
+      transform:scale(1);
+    }
+  }

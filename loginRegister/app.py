@@ -1,8 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, Response
 from werkzeug.security import generate_password_hash, check_password_hash
 import mysql.connector
+# pylint: disable=no-member
+# pylint: disable=import-error
+import cv2
+import mediapipe as mp
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
+socketio = SocketIO(app)
+
 app.secret_key = '123123123'  # Cambia esto a una clave secreta fuerte
 
 # Configuración de la base de datos
@@ -132,5 +139,67 @@ def delete_note(id):
     db_notas.commit()
     return redirect(url_for('index2'))
 
+@app.route('/transcription')
+def index3():
+    return render_template('audio.html')
+
+# Inicializar el objeto de detección de manos de Mediapipe
+mp_hands = mp.solutions.hands
+hands = mp_hands.Hands()
+
+# Inicializar la cámara web
+cap = cv2.VideoCapture(0)
+
+@app.route('/HandGestureDetection')
+def index4():
+    return render_template('handDetect.html')
+
+@socketio.on('interpretation_update')
+def handle_interpretation_update(interpretation):
+    socketio.emit('interpretation_result', interpretation)
+
+def generate_frames():
+    while True:
+        ret, frame = cap.read()
+
+        # Pasar el marco original a Mediapipe
+        results = hands.process(frame)
+
+        # Lógica de interpretación
+        interpretation = ""
+        if results.multi_hand_landmarks:
+            for landmarks in results.multi_hand_landmarks:
+                # Dibujar los landmarks en el marco
+                mp.solutions.drawing_utils.draw_landmarks(frame, landmarks, mp_hands.HAND_CONNECTIONS)
+
+                # Obtener la posición de los dedos                 
+                thumb_tip = landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP]
+                index_tip = landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
+                middle_tip = landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP]
+                ring_tip = landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_TIP]
+                pinky_tip = landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP]
+
+                thumb_tip_y = int(thumb_tip.y * frame.shape[0])
+                index_tip_y = int(index_tip.y * frame.shape[0])
+                middle_tip_y = int(middle_tip.y * frame.shape[0])
+                ring_tip_y = int(ring_tip.y * frame.shape[0])
+                pinky_tip_y = int(pinky_tip.y * frame.shape[0])
+                
+                # Obtener la posición del pulgar 
+                if thumb_tip_y < landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * frame.shape[0]:
+                    interpretation = "Muy bien"
+                
+
+        _, buffer = cv2.imencode('.jpg', cv2.flip(frame, 1))
+        frame = buffer.tobytes()
+        socketio.emit('interpretation_result', interpretation)
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+@app.route('/HandGestureDetection/video_feed')
+def video_feed():
+    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
 if __name__ == '__main__':
-    app.run(debug=True, port="4002")
+    socketio.run(app, debug=True, port="4002")

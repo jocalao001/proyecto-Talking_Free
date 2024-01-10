@@ -65,7 +65,7 @@ header button:hover {
 }
 
 #contenido1, #contenido2, #contenido3 {
- background: transparent; /* Fondo del contenido */
+ background: black; /* Fondo del contenido */
  backdrop-filter:blur(55px);
  border-radius: 8px;
  min-height: 30em; /* Alto del contenido */
@@ -74,6 +74,27 @@ header button:hover {
  margin-bottom: 2em;
  transition: all 0.3s ease; /* Agrega una transición suave */
  cursor: pointer;
+}
+
+#contenido1 {
+    background-image: url(notas.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
+}
+
+#contenido2 {
+    background-image: url(audio.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
+}
+
+#contenido3 {
+    background-image: url(handDetec.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:contain;
 }
 
 #contenido1:hover, #contenido2:hover, #contenido3:hover {

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Reconocimiento de Voz en Tiempo Real</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesButton.css') }}">
+    <script src="{{ url_for('static', filename='scriptAudio.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/bienvenido"></a>Talking Free</h1>
+        <form method="GET" action="/bienvenido">
+            <button type="submit">Back</button>
+        </form>
+    </header>
+    <div class="button">
+        <!-- <h1>Reconocimiento de Voz en Tiempo Real</h1> -->
+        <svg width="250" viewbox="0 0 100 100">
+            <circle cx="50%" cy="50%" r="40%" id="record-pulse">
+            </circle>
+            <circle onmousedown="startListening()" onmouseup="stopListening()" cx="50%" cy="50%" r="32%" id="record-button">
+            </circle>
+            <text id="button-text" x="50%" y="50%" text-anchor="middle" dy="0.3em" fill="white" font-size="14" pointer-events="none">
+            Press</text>
+            <script>
+                const buttonText = document.getElementById('button-text');
+        
+                document.getElementById('record-button').addEventListener('mousedown', () => {
+                    buttonText.textContent = 'Speak';
+                });
+        
+                document.getElementById('record-button').addEventListener('mouseup', () => {
+                    buttonText.textContent = 'Press';
+                });
+            </script>
+        </svg>
+    </div>
+    <div class="transcription" id="transcription"></div>
+    <button id="clearButton" onclick="clearTranscription()">Clean</button>
+</body>
+</html>

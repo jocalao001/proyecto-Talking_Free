@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Gesture Detection</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='handDetec.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='handDetec.js') }}"></script>
+</head>
+<body>
+    <header>
+        <h1><a href="/bienvenido"></a>Talking Free</h1>
+        <form method="GET" action="/bienvenido">
+            <button type="submit">Back</button>
+        </form>
+    </header>
+    <div id="content">        
+        <img src="{{ url_for('video_feed') }}" width="640" height="480" id="video_feed">
+        <h1>Hand Gesture Detection</h1>
+        <button onclick="toggleCamera()">Abrir Cámara</button>
+        <div id="interpretation_result"></div>
+        <div type="text" id="interpretation_container"></div>
+        <button id="clearButton">Limpiar</button>
+    </div> 
+    <script>
+        // Función para ajustar el tamaño del video
+        function resizeVideo() {
+            var video = document.getElementById('video_feed');
+            var content = document.getElementById('content');
+
+            // Ajustar el ancho del video al ancho del contenedor
+            var newWidth = content.clientWidth;
+            video.style.width = newWidth + 'px';
+        }
+
+        // Asignar la función al evento resize de la ventana
+        window.addEventListener('resize', resizeVideo);
+
+        // Llamar a la función al cargar la página
+        window.onload = resizeVideo;
+    </script>      
+</body>
+</html>

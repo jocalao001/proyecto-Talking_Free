@@ -188,6 +188,9 @@ def generate_frames():
                 # Obtener la posición del pulgar 
                 if thumb_tip_y < landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * frame.shape[0]:
                     interpretation = "Muy bien"
+
+                if thumb_tip_y > landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * frame.shape[0]:
+                    interpretation = "Muy mal"
                 
 
         _, buffer = cv2.imencode('.jpg', cv2.flip(frame, 1))

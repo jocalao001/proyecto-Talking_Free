@@ -12,7 +12,7 @@ socketio = SocketIO(app)
 
 app.secret_key = '123123123'  # Cambia esto a una clave secreta fuerte
 
-# Configuración de la base de datos
+# Configuración de la base de datos de login y register
 db_usuarios = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -21,6 +21,7 @@ db_usuarios = mysql.connector.connect(
 )
 cursor_usuarios = db_usuarios.cursor()
 
+# Configuración de la base de datos de la herammienta de notas
 db_notas = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -98,7 +99,7 @@ def prueba():
         return redirect(url_for('login'))
 
 
-# Ruta para mostrar las notas
+# Ruta para mostrar notas
 @app.route('/notas')
 def index2():
     cursor_notas.execute("SELECT id, content, created_at FROM notas ORDER BY created_at DESC")
@@ -143,11 +144,11 @@ def delete_note(id):
 def index3():
     return render_template('audio.html')
 
-# Inicializar el objeto de detección de manos de Mediapipe
+# Inicializa la detección de manos de Mediapipe
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands()
 
-# Inicializar la cámara web
+# Inicializa la cámara web
 cap = cv2.VideoCapture(0)
 
 @app.route('/HandGestureDetection')

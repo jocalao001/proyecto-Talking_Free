@@ -10,8 +10,7 @@ function toggleCamera() {
     }
 }
 
-
-// Crear una conexión Socket.IO
+// Crea una conexión Socket.IO
 console.log('Socket.IO connection established.');
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talking Free</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginRegistro.css') }}">
+    
+</head>
+
+<body>
+    <header>
+        <h1>Talking Free</h1>
+    </header>
+    <div class="container">
+        <div class="box loginbox">
+            <form method="POST" action="/login">
+                <div class="detais dtsignin">
+                    <h2>Login</h2>
+                    <div class="box-wrapper">
+                        <input type="text" name="email" placeholder="Email">
+                        <label for="">Email</label>
+                    </div>
+                    <div class="box-wrapper">
+                        <input type="password" name="password" placeholder="Password">
+                        <label for="">Password</label>
+                    </div>
+                    <button id="btnlgn" href="prueba">Login</button>
+                    <p>Don't have account?? <a href="#" id="lnk_rg">Register</a></p>
+                </div>
+            </form>
+            
+            <form class="formulario" method="POST" action="/registro">
+                <div class="signupbox">
+                    <div class="detais dtsignup">
+                        <h2>Register</h2>
+                        <div class="box-wrapper">
+                            <input type="text" name="nombre" placeholder="Username">
+                            <label for="">Username</label>
+                        </div>
+                        <div class="box-wrapper">
+                            <input type="email" name="email" placeholder="Email">
+                            <label for="">Email</label>
+                        </div>
+                        <div class="box-wrapper">
+                            <input type="password" name="password" placeholder="Password">
+                            <label for="">Password</label>
+                        </div>
+                        <button id="btnrg" href="registro">Register</button>
+                        <p>Already have account?? <a href="#" id="lnk_lg">Login</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script>
+
+
+            // details Fetch
+
+            let detlg = document.querySelector(".dtsignin");
+            let detrg = document.querySelector(".dtsignup");
+
+            let linkrg = document.querySelector("#lnk_rg ");
+            let linklg= document.querySelector("#lnk_lg");
+
+            function callsign(){
+                detlg.classList.toggle("callreg");
+                detrg.classList.toggle("setreg");
+            }
+
+
+            linklg.addEventListener("click",callsign)
+            linkrg.addEventListener("click",callsign)
+
+
+
+        </script>
+</body>
+
+</html>

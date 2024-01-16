@@ -7,9 +7,8 @@
     <title>Reconocimiento de Voz en Tiempo Real</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesButton.css') }}">
-    <script src="{{ url_for('static', filename='scriptAudio.js') }}"></script>
+    <script src="{{ url_for('static', filename='scriptAudio.js') }}"></script>    
 </head>
-
 <body>
     <header>
         <h1><a href="/bienvenido"></a>Talking Free</h1>
@@ -41,5 +40,6 @@
     </div>
     <div class="transcription" id="transcription"></div>
     <button id="clearButton" onclick="clearTranscription()">Clean</button>
+       
 </body>
 </html>

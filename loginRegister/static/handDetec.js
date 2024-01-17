@@ -10,7 +10,7 @@ function toggleCamera() {
     }
 }
 
-// Crea una conexión Socket.IO
+// Crear una conexión Socket.IO
 console.log('Socket.IO connection established.');
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var newSpan = document.createElement('span');
             
             // Agregar espacio entre interpretaciones
-            newSpan.style.marginRight = '10px';
+            newSpan.style.marginRight = '8px';
 
             // Agregar la nueva interpretación al contenido del nuevo span
             newSpan.textContent = interpretation;
@@ -72,4 +72,3 @@ document.addEventListener('DOMContentLoaded', function () {
     var interpretationResultDiv = document.getElementById('interpretation_result');
     interpretationResultDiv.style.display = 'none';
 });
-

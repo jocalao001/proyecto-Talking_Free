@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Reconocimiento de Voz en Tiempo Real</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles1.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles2.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesButton.css') }}">
     <script src="{{ url_for('static', filename='scriptAudio.js') }}"></script>    
@@ -40,6 +41,63 @@
     </div>
     <div class="transcription" id="transcription"></div>
     <button id="clearButton" onclick="clearTranscription()">Clean</button>
-       
+    <h1>Respuestas Rápidas</h1>
+    <div class="contenido">
+        <div class="content">
+            <div class="texto">
+                
+            </div>
+            <div class="botones">
+                <div class="eliminar">O</div>
+                <div class="editar"><...></div>
+            </div>
+        </div>
+        <!-- <div class="content">
+            <div class="texto">
+                
+            </div>
+            <div class="botones">
+                <div class="eliminar">O</div>
+                <div class="editar"><...></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="texto">
+                
+            </div>
+            <div class="botones">
+                <div class="eliminar">O</div>
+                <div class="editar"><...></div>
+            </div>
+        </div>    
+        <div class="content">
+            <div class="texto">
+                
+            </div>
+            <div class="botones">
+                <div class="eliminar">O</div>
+                <div class="editar"><...></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="texto">
+                
+            </div>
+            <div class="botones">
+                <div class="eliminar">O</div>
+                <div class="editar"><...></div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="texto">
+                
+            </div>
+            <div class="botones">
+                <div class="eliminar">O</div>
+                <div class="editar"><...></div>
+            </div>
+        </div>          -->
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>       
 </body>
 </html>

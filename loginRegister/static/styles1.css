@@ -1,0 +1,143 @@
+h1 {
+    text-align: center;
+}
+
+.contenido {
+    display: flex;
+    width: 60%;      
+    margin: 1%;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 5px;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+.logout-container {
+    background-color: transparent;
+    color: aquamarine;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.logout-container:hover {
+    text-decoration: none;
+}
+
+.logout-container {
+    margin-left: auto;
+}
+
+.content {
+    min-width: 30%;
+    background-color: transparent;
+    padding: 10px;    
+    display: flex; 
+    flex-basis: 300px;
+    flex-grow: 1;
+}
+
+.texto {
+    flex: 1; 
+    float: left;
+    min-height: 100%;    
+    min-width: 80%;
+    background-color: rgb(216, 216, 216);
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #707070;
+    font-size: large;
+    text-align: center;
+    text-wrap: wrap;
+}
+
+.texto:hover {
+    background-color: white;
+    transform: scale(1.05);
+}
+
+.texto:active {
+    transform: scale(1.02);
+}
+
+.botones {
+    display: flex; 
+    flex-direction: column;
+    align-items: stretch;
+    float: right;    
+    background-color: transparent;    
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.eliminar, .editar {      
+    padding: 10px;
+    margin: 4px;
+    color: #949494;
+    text-align: center;   
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;    
+}
+
+.eliminar {
+    background-color: #474747; 
+    
+}
+
+.eliminar:hover {
+    background-color: #474747;
+    transform: scale(1.2);
+    color: aquamarine;
+}
+
+.eliminar:active {
+    transform: scale(0.95);
+}
+
+.editar {
+    background-color: #474747;
+}
+
+.editar:hover {
+    background-color: #474747;
+    transform: scale(1.2);
+    color: aquamarine;
+}
+
+.editar:active {
+    transform: scale(0.95);
+}
+
+.add-container-icon {    
+    max-width: 0%;
+    margin: auto;    
+    background-color: white; 
+    color: #fff; 
+    cursor: pointer;    
+    font-size: 2em;       
+}
+
+.add-container-icon:hover {
+    color: aquamarine;
+    transform: scale(1.3);
+}
+
+input[type="text"] {
+    border: none;
+    min-width: 80%;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    color: #707070;
+    outline: none;
+    padding: 5px; 
+    font-size: 16px;     
+}
